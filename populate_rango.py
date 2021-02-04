@@ -1,4 +1,5 @@
 import os
+from random import randint
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.settings')
 
 import django
@@ -35,7 +36,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, views=cat_data['views'], likes=cat_data['likes'])
         for p in cat_data['pages']:
-            add_page(c, p['title'], p['url'])
+            add_page(c, p['title'], p['url'], randint(1,500))
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
